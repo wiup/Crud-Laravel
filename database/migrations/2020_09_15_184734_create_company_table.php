@@ -18,6 +18,7 @@ class CreateCompanyTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('logo');
+            $table->string('website');
             $table->timestamps();
         });
     }
