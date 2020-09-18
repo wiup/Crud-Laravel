@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                <h2>Register Company</h2>
+                <h2>Update company</h2>
             </div>
 
             <div class="card-body">
@@ -48,22 +48,22 @@
                             </div>
                             <div class="col-md-11">
                                 <input type="file" class="form-control @error('logo')is-invalid @endif" id="" value="{{$company->logo}}" name="logo">
-
+                                @error('logo')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
 
                         </div>
 
-                        @error('logo')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
+
                     </div>
-                    <button class="btn btn-success float-right">Add new company</button>
+                    <button class="btn btn-success float-right">Update</button>
                 </form>
 
             </div>
         </div>
-    </div>
+
 
 @endsection

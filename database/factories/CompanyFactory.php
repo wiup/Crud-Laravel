@@ -10,6 +10,6 @@ $factory->define(\App\Company::class, function (Faker $faker) {
         'name' => $this->faker->name,
         'email' => $this->faker->unique()->safeEmail,
         'website' => $this->faker->domainName,
-        'logo' => 'teste'
+
     ];
 });

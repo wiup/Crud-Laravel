@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 route::resource('company','CompanyController')->middleware('auth');
-
-
+Route::post('company/s/','CompanyController@search')->name('search');
 Auth::routes();
 
 Route::get('/register',function(){
    return redirect()->route('home');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+   return redirect()->route('home');
+});

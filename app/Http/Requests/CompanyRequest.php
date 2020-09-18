@@ -25,9 +25,18 @@ class CompanyRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
-            'website' => 'required',
-            'logo' => 'required'
+            'email' => 'required|email',
+            'website' => ['regex:/^(www\.)+([a-z0-9]*)+(\.)+([a-z0-9]*)/'],
+            'logo' => 'image',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Esse campo deve ser preenchido',
+            'email' => 'E-mail inválido, siga esse padrão \'exemplo@email.com\'',
+            'website.regex' => 'Url inválida, digite nesse padrão \'www.meusite.com\'',
         ];
     }
 }
