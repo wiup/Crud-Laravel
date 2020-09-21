@@ -112,11 +112,20 @@ class CompanyController extends Controller
         flash('Cadastro da empresa excluído com sucesso')->error();
         return redirect()->route('company.index');
     }
-    public function search(Request $request){
+    public function autoComplete(Request $request){
         $companies = \App\Company::where('name','like','%'. $request->get('search') .'%')->get();
         return response()->json($companies);
     }
-    public function searchIndex(){
+    public function search(Request $request){
 
+        $companies = \App\Company::where('name','like','%'. $request->get('search') .'%')->get();
+        return view('admin.company.search', compact('companies'));
+    }
+
+    public function companyEmployees($company){
+        $company =  \App\Company::find($company);
+        $employees = $company->employees()->paginate(10);
+
+        return view('admin.employee.index', compact('employees', 'company'));
     }
 }

@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" style="color:#e87642;font-weight: 600" href="#">
+                <a class="navbar-brand" style="color:#e87642;font-weight: 600" href="{{route('home')}}">
                     <img src="{{asset('assets/img/icon.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
                     Estagiando
                 </a>
@@ -85,5 +85,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </body>
 </html>

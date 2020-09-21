@@ -2,20 +2,21 @@
 
 @section('content')
         <div class="row mb-4">
-            <h2>Adicionar uma empresa</h2>
+            <h2>{{$company->name}}</h2>
         </div>
+
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                Companies
+                Employees
             </div>
 
             <div class="card-body">
 
-                <a href="{{route('company.create')}}" class="btn btn-success">Create new company</a>
+                <a href="{{route('company.create')}}" class="btn btn-success">Create new employee</a>
 
                 <div class="card mt-4">
                     <div class="card-header" style="background-color:#fcfcfc;">
-                        Companies list
+                        Employees list
                     </div>
 
                     <div class="card-body">
@@ -31,32 +32,28 @@
                             <table class="table rounded table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+
                                     <th>Name</th>
-                                    <th>E-mail</th>
-                                    <th>Website</th>
+                                    <th>Last name</th>
+                                    <th>phone</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($companies as $company)
+                                @foreach($employees as $employee)
                                     <tr>
-                                        <td>
-                                            @if($company->logo)
-                                                <img class="img-fluid" style="height: 50px" src="{{asset('storage/'.$company->logo)}}" alt="">
-                                            @else
-                                                <img class="img-fluid" style="height: 50px" src="{{asset('assets/img/no-image.png')}}" alt="">
-                                            @endif
-                                        </td>
-                                        <td>{{$company->name}}</td>
-                                        <td>{{$company->email}}</td>
-                                        <td>{{$company->website}}</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#modalRemove"><i class="fas fa-trash"></i></button>
-                                            <a href="{{route('company.edit',['company' => $company->id])}}"  class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                                            <a href="{{route('company.employees',['company' => $company->id])}}"  class="btn btn-success"><i class="fas fa-eye"></i></a>
 
+                                        <td>{{$employee->name}}</td>
+                                        <td>{{$employee->lastName}}</td>
+                                        <td>{{$employee->phone}}</td>
+                                        <td>
+                                            <form action="{{route('employee.destroy',['employee' => $employee->id])}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                <a href="{{route('employee.edit',['employee' => $employee->id])}}"  class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                                            </form>
                                         </td>
 
                                     </tr>
@@ -64,7 +61,7 @@
                                 </tbody>
                             </table>
 
-                            {{$companies->links()}}
+                            {{$employees->links()}}
 
                         </div>
                     </div>
@@ -72,33 +69,12 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Deseja mesmo continuar com essa ação?<br>
-                        Todos os dados serão apagados incluindo os funcionários!
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="{{route('company.destroy',['company' => $company->id])}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
+            $('.addAttr').click(function() {
+                var id = $(this).data('id');
+                $('#id').val(id);
+            } );
             $(document).ready(function(){
                 $("#search").blur(function() {
                     $("#searchList").fadeOut();
