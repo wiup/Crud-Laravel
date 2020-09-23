@@ -44,7 +44,7 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($employees as $employee)
+                                @forelse($employees as $employee)
                                     <tr>
 
                                         <td>{{$employee->name}}</td>
@@ -62,7 +62,11 @@
                                         </td>
 
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td class="text-center" colspan="5">Nada foi encontrado, adicione um novo funcionário</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
 

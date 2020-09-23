@@ -37,7 +37,7 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         $id = $request->get('companyId');
-        $company = \App\Company::find($id);
+        $company = \App\Company::findOrFail($id);
         $company->employees()->create([
            'name' => $request->get('name'),
            'last_name' => $request->get('last_name'),
@@ -82,7 +82,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $employee)
     {
-        $employee =  \App\Employee::find($employee);
+        $employee =  \App\Employee::findOrFail($employee);
         $data = $request->all();
         $employee->update($data);
         flash('Dados atualizados com sucesso')->success();
@@ -97,16 +97,17 @@ class EmployeeController extends Controller
      */
     public function destroy($employee)
     {
-        $employee = \App\Employee::find($employee);
+        $employee = \App\Employee::findOrFail($employee);
+        $company = $employee->company_id;
         $employee->delete();
         flash('Cadastro da empresa excluído com sucesso')->error();
-        return redirect()->back();
+        return redirect()->route('company.employees',['company'=>$company]);
     }
 
     public function autoComplete(Request $request)
     {
 
-        $company = \App\Company::find($request->get('companyId'));
+        $company = \App\Company::findOrFail($request->get('companyId'));
 
         $employee = $company->employees()->where(function($q) use($request){
                $q->where('name','like','%'. $request->get('search') .'%')
@@ -120,7 +121,7 @@ class EmployeeController extends Controller
     public function search(Request $request)
     {
 
-        $company = \App\Company::find($request->companyId);
+        $company = \App\Company::findOrFail($request->companyId);
         $employees = $company->employees()->where('id',$request->searchId)->paginate($request->searchId);
 
         return view('admin.employee.index', compact('employees','company'));

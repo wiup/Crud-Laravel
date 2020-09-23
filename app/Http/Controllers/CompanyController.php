@@ -85,7 +85,7 @@ class CompanyController extends Controller
     {
         $data = $request->all();
         $logo = $request->file('logo');
-        $company = \App\Company::find($company);
+        $company = \App\Company::findOrFail($company);
         if($request->hasFile('logo')){
             if(Storage::disk('public')->exists($company->logo)){
                 Storage::disk('public')->delete($company->logo);
@@ -107,7 +107,7 @@ class CompanyController extends Controller
      */
     public function destroy($company)
     {
-        $company = \App\Company::find($company);
+        $company = \App\Company::findOrFail($company);
         $company->delete();
         flash('Cadastro da empresa excluído com sucesso')->error();
         return redirect()->route('company.index');
@@ -123,7 +123,7 @@ class CompanyController extends Controller
     }
 
     public function companyEmployees($company){
-        $company =  \App\Company::find($company);
+        $company =  \App\Company::findOrFail($company);
         $employees = $company->employees()->paginate(10);
 
         return view('admin.employee.index', compact('employees', 'company'));

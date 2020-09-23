@@ -25,6 +25,7 @@
                                     <div id="searchList" class="card position-absolute" style="top:100%"></div>
                             </div>
                         </form>
+                        <a class="float-right btn btn-secondary btn-sm mb-2" href="{{route('company.index')}}">Ver todos</a>
                         <div class="table-responsive-md">
                             <table class="table rounded table-bordered">
                                 <thead>
@@ -38,7 +39,7 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($companies as $company)
+                                @forelse($companies as $company)
                                     <tr>
                                         <td>
                                             @if($company->logo)
@@ -58,8 +59,12 @@
                                         </td>
 
                                     </tr>
-                                @endforeach
-                                </tbody>
+                                @empty
+                                   <tr>
+                                       <td class="text-center" colspan="5">Nada foi encontrado, volte para a tela anterior</td>
+                                   </tr>
+                                @endforelse
+                                 </tbody>
                             </table>
 
                             {{$companies->links()}}
