@@ -4,16 +4,16 @@
 
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                Companies
+                Empresas
             </div>
 
             <div class="card-body">
 
-                <a href="{{route('company.create')}}" class="btn btn-success">Create new company</a>
+                <a href="{{route('company.create')}}" class="btn btn-success">Criar nova empresa</a>
 
                 <div class="card mt-4">
                     <div class="card-header" style="background-color:#fcfcfc;">
-                        Companies list
+                        Lista de empresas
                     </div>
 
                     <div class="card-body">
@@ -31,10 +31,10 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Nome</th>
                                     <th>E-mail</th>
                                     <th>Website</th>
-                                    <th>Action</th>
+                                    <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -90,12 +90,12 @@
                         Todos os dados serão apagados incluindo os funcionários!
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <form action="" id="id_delete" method="POST">
                             @csrf
                             @method('DELETE')
 
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger">Deletar</button>
                         </form>
                     </div>
                 </div>

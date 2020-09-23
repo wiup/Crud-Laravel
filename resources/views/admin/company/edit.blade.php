@@ -4,7 +4,7 @@
 
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                <h2>Update company</h2>
+                <h2>Atualizar dados da empresa</h2>
             </div>
 
             <div class="card-body">
@@ -13,8 +13,8 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="">Company name</label>
-                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{$company->name}}" name="name" placeholder="Name" ">
+                        <label for="">Nome</label>
+                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{$company->name}}" name="name" placeholder="Digite o nome da sua empresa">
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -22,8 +22,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Email address</label>
-                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{$company->email}}" name="email" placeholder="email@example.com">
+                        <label for="">E-mail</label>
+                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{$company->email}}" name="email" placeholder="exemplo@email.com">
                         @error('email')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -31,8 +31,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Your website</label>
-                        <input type="text" class="form-control @error('website')is-invalid @endif" id="" value="{{$company->website}}" name="website" placeholder="www.example.com">
+                        <label for="">URL do site</label>
+                        <input type="text" class="form-control @error('website')is-invalid @endif" id="" value="{{$company->website}}" name="website" placeholder="www.meusite.com">
                         @error('website')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Upload logo</label>
+                        <label for="">Carregar logo</label>
                         <div class="row ">
                             <div class="col-md-1">
                                 <img style="height: 50px" class="img-fluid"src="{{asset('storage/'.$company->logo)}}" alt="">
@@ -59,7 +59,7 @@
 
 
                     </div>
-                    <button class="btn btn-success float-right">Update</button>
+                    <button class="btn btn-success float-right">atualizar</button>
                 </form>
 
             </div>

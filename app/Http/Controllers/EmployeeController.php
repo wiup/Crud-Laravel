@@ -118,11 +118,26 @@ class EmployeeController extends Controller
 
         return response()->json($employee);
     }
+
     public function search(Request $request)
     {
 
         $company = \App\Company::findOrFail($request->companyId);
-        $employees = $company->employees()->where('id',$request->searchId)->paginate($request->searchId);
+
+        if($request->get('searchId')){
+            $employees = $company->employees()->where('id',$request->searchId)->paginate();
+
+        }else{
+            $employees = $company->employees()->where(function($q) use($request){
+                $q->where('name','like','%'. $request->get('search') .'%')
+                    ->orWhere('last_name','like','%'. $request->get('search') .'%');
+
+            })->paginate();
+
+
+        }
+
+
 
         return view('admin.employee.index', compact('employees','company'));
     }

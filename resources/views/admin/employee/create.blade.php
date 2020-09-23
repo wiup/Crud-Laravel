@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                <h2>Register Company</h2>
+                <h2>Registrar funcionários</h2>
             </div>
 
             <div class="card-body">
@@ -13,8 +13,8 @@
                     @csrf
                     <input type="hidden" name="companyId" value="{{$id}}">
                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{old('name')}}" name="name" placeholder="Name">
+                        <label for="">Nome</label>
+                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{old('name')}}" name="name" placeholder="Nome do funcionário">
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -22,8 +22,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Last name</label>
-                        <input type="text" class="form-control @error('last_name')is-invalid @endif" id="" value="{{old('last_name')}}" name="last_name" placeholder="Last name">
+                        <label for="">Sobrenome</label>
+                        <input type="text" class="form-control @error('last_name')is-invalid @endif" id="" value="{{old('last_name')}}" name="last_name" placeholder="Sobrenome">
                         @error('last_name')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -31,8 +31,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{old('email')}}" name="email" placeholder="example@mail.com">
+                        <label for="">E-mail</label>
+                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{old('email')}}" name="email" placeholder="exemplo@email.com">
                         @error('email')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Phone</label>
+                        <label for="">Telefone</label>
                         <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{old('phone')}}" name="phone" placeholder="(00) 00000-0000">
                         @error('phone')
                         <div class="invalid-feedback">
@@ -49,7 +49,7 @@
                         </div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-success float-right">Add new employee</button>
+                    <button type="submit" class="btn btn-success float-right">Adicionar funcionário</button>
                 </form>
 
             </div>

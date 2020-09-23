@@ -24,7 +24,7 @@
                             <div class="form-group form-inline position-relative">
                                     <input type="text" id="search" class="form-control mr-2" name="search" style="width:18rem;" placeholder="Procure pelo nome da empresa">
                                     <input type="hidden" name="companyId" value="{{$company->id}}">
-                                    <input type="hidden" id="searchId" name="searchId" value="">
+                                    <input type="hidden" id="searchId" name="searchId">
                                     <button class="btn btn-success ">Pesquisar</button>
                                     <div id="searchList" class="card position-absolute" style="top:100%"></div>
                             </div>

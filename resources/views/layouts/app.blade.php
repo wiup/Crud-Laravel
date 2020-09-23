@@ -36,9 +36,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="{{route('home')}}" class="nav-link">Inicio</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('company.index')}}" class="nav-link">Empresas</a>
                         </li>
                     </ul>
