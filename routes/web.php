@@ -19,12 +19,21 @@ Route::get('/', function () {
 
 //Company routes
 route::resource('company','CompanyController')->middleware('auth');
-Route::post('/company/s/','CompanyController@autoComplete')->name('autoComplete')->middleware('auth');
-Route::post('company/search/', 'CompanyController@search')->name('search')->middleware('auth');
+Route::post('/company/s/','CompanyController@autoComplete')->name('company.autoComplete')->middleware('auth');
+Route::post('company/search/', 'CompanyController@search')->name('company.search')->middleware('auth');
 Route::get('/company/employees/{company}','CompanyController@companyEmployees')->name('company.employees')->middleware('auth');
 
 //Employee routes
-route::resource('employee', 'EmployeeController')->middleware('auth');
+
+Route::prefix('company')->group(function(){
+
+    Route::post('/employees/s/','EmployeeController@autoComplete')->name('employee.autoComplete')->middleware('auth');
+    Route::post('employees/search/', 'EmployeeController@search')->name('employee.search')->middleware('auth');
+    route::resource('employee', 'EmployeeController')->except(['create'])->middleware('auth');
+    Route::get('employee/create/{id}', 'EmployeeController@create')->name('employee.create')->middleware('auth');
+
+});
+
 
 Auth::routes();
 

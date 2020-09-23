@@ -23,15 +23,26 @@
                     </div>
                     <div class="form-group">
                         <label for="">Last name</label>
-                        <input type="text" class="form-control @error('lastName')is-invalid @endif"  value="{{$employee->lastName}}" name="lastName" placeholder="Last name">
-                        @error('lastName')
+                        <input type="text" class="form-control @error('last_name')is-invalid @endif"  value="{{$employee->last_name}}" name="last_name" placeholder="Last name">
+                        @error('last_name')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
+
                     <div class="form-group">
-                        <label for="">Phone number:</label>
+                        <label for="">Email</label>
+                        <input type="text" class="form-control @error('email')is-invalid @endif"  value="{{$employee->email}}" name="email" placeholder="example@mail">
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Phone number</label>
                         <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{$employee->phone}}" name="phone" placeholder="Number">
                         @error('phone')
                         <div class="invalid-feedback">

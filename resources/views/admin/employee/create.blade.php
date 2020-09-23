@@ -9,11 +9,12 @@
 
             <div class="card-body">
 
-                <form action="{{route('company.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('employee.store')}}" method="post">
                     @csrf
+                    <input type="hidden" name="companyId" value="{{$id}}">
                     <div class="form-group">
-                        <label for="">Company name</label>
-                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{old('name')}}" name="name" placeholder="Name" ">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control @error('name')is-invalid @endif" id="" value="{{old('name')}}" name="name" placeholder="Name">
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -21,18 +22,18 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Email address</label>
-                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{old('email')}}" name="email" placeholder="email@example.com">
-                        @error('email')
+                        <label for="">Last name</label>
+                        <input type="text" class="form-control @error('last_name')is-invalid @endif" id="" value="{{old('last_name')}}" name="last_name" placeholder="Last name">
+                        @error('last_name')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Your website</label>
-                        <input type="text" class="form-control @error('website')is-invalid @endif" id="" value="{{old('web')}}" name="website" placeholder="www.example.com">
-                        @error('website')
+                        <label for="">Email</label>
+                        <input type="text" class="form-control @error('email')is-invalid @endif" id="" value="{{old('email')}}" name="email" placeholder="example@mail.com">
+                        @error('email')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
@@ -40,15 +41,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Upload logo</label>
-                        <input type="file" class="form-control @error('logo')is-invalid @endif" id="" name="logo">
-                        @error('logo')
+                        <label for="">Phone</label>
+                        <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{old('phone')}}" name="phone" placeholder="(00) 00000-0000">
+                        @error('phone')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <button class="btn btn-success float-right">Add new company</button>
+                    <button type="submit" class="btn btn-success float-right">Add new employee</button>
                 </form>
 
             </div>

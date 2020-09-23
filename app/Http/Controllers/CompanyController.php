@@ -118,8 +118,8 @@ class CompanyController extends Controller
     }
     public function search(Request $request){
 
-        $companies = \App\Company::where('name','like','%'. $request->get('search') .'%')->get();
-        return view('admin.company.search', compact('companies'));
+        $companies = \App\Company::where('name','like','%'. $request->get('search') .'%')->paginate(10);
+        return view('admin.company.index', compact('companies'));
     }
 
     public function companyEmployees($company){

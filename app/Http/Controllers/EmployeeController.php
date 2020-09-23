@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmployeeRequest;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -21,9 +22,10 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+
+        return view('admin.employee.create',compact('id'));
     }
 
     /**
@@ -32,9 +34,20 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+        $id = $request->get('companyId');
+        $company = \App\Company::find($id);
+        $company->employees()->create([
+           'name' => $request->get('name'),
+           'last_name' => $request->get('last_name'),
+           'email' => $request->get('email'),
+           'phone' => $request->get('phone')
+        ]);
+        flash('Dados criados com sucesso')->success();
+        return redirect()->route('company.employees',['company' => $id]);
+
+
     }
 
     /**
@@ -84,10 +97,32 @@ class EmployeeController extends Controller
      */
     public function destroy($employee)
     {
-
         $employee = \App\Employee::find($employee);
         $employee->delete();
         flash('Cadastro da empresa excluído com sucesso')->error();
         return redirect()->back();
+    }
+
+    public function autoComplete(Request $request)
+    {
+
+        $company = \App\Company::find($request->get('companyId'));
+
+        $employee = $company->employees()->where(function($q) use($request){
+               $q->where('name','like','%'. $request->get('search') .'%')
+                   ->orWhere('last_name','like','%'. $request->get('search') .'%');
+
+        })->get();
+
+
+        return response()->json($employee);
+    }
+    public function search(Request $request)
+    {
+
+        $company = \App\Company::find($request->companyId);
+        $employees = $company->employees()->where('id',$request->searchId)->paginate($request->searchId);
+
+        return view('admin.employee.index', compact('employees','company'));
     }
 }

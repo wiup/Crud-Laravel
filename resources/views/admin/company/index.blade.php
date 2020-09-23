@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="row mb-4">
-            <h2>Adicionar uma empresa</h2>
-        </div>
+
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
                 Companies
@@ -19,7 +17,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{route('search')}}" method="post" autocomplete="off">
+                        <form action="{{route('company.search')}}" method="post" autocomplete="off">
                             @csrf
                             <div class="form-group mb-4 form-inline position-relative">
                                     <input type="text" id="search" class="form-control mr-2" name="search" style="width:18rem;" placeholder="Procure pelo nome da empresa">
@@ -53,9 +51,9 @@
                                         <td>{{$company->email}}</td>
                                         <td>{{$company->website}}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#modalRemove"><i class="fas fa-trash"></i></button>
+                                            <button class="btn btn-danger delete" value="{{$company->id}}" data-toggle="modal" data-target="#modalRemove"><i class="fas fa-trash"></i></button>
                                             <a href="{{route('company.edit',['company' => $company->id])}}"  class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                                            <a href="{{route('company.employees',['company' => $company->id])}}"  class="btn btn-success"><i class="fas fa-eye"></i></a>
+                                            <a href="{{route('company.employees',['company' => $company->id])}}"  class="btn btn-info"><i class="fas fa-eye"></i></a>
 
                                         </td>
 
@@ -88,9 +86,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="{{route('company.destroy',['company' => $company->id])}}" method="POST">
+                        <form action="" id="id_delete" method="POST">
                             @csrf
                             @method('DELETE')
+
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
@@ -98,6 +97,15 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+
+            $(".delete").each(function(index,btn){
+                btn.addEventListener('click', function () {
+                    $("#id_delete").attr("action","company/"+btn.value);
+                });
+            });
+
+        </script>
         <script>
             $(document).ready(function(){
                 $("#search").blur(function() {
@@ -112,7 +120,7 @@
                     if(searchInput != ""){
 
                         $.ajax({
-                            url: "{{route('autoComplete')}}",
+                            url: "{{route('company.autoComplete')}}",
                             type: 'post',
                             dataType: 'json',
                             data:{
