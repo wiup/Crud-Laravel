@@ -4,7 +4,7 @@
 
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                <h2>Update company</h2>
+                <h2>Atualizar empresas</h2>
             </div>
 
             <div class="card-body">
@@ -13,8 +13,8 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" class="form-control @error('name')is-invalid @endif"  value="{{$employee->name}}" name="name" placeholder="First name">
+                        <label for="">Nome</label>
+                        <input type="text" class="form-control @error('name')is-invalid @endif"  value="{{$employee->name}}" name="name" placeholder="Nome">
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -22,8 +22,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="">Last name</label>
-                        <input type="text" class="form-control @error('last_name')is-invalid @endif"  value="{{$employee->last_name}}" name="last_name" placeholder="Last name">
+                        <label for="">Sobrenome</label>
+                        <input type="text" class="form-control @error('last_name')is-invalid @endif"  value="{{$employee->last_name}}" name="last_name" placeholder="Sobrenome">
                         @error('last_name')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Email</label>
+                        <label for="">E-mail</label>
                         <input type="text" class="form-control @error('email')is-invalid @endif"  value="{{$employee->email}}" name="email" placeholder="example@mail">
                         @error('email')
                         <div class="invalid-feedback">
@@ -42,8 +42,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Phone number</label>
-                        <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{$employee->phone}}" name="phone" placeholder="Number">
+                        <label for="">Telefone</label>
+                        <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{$employee->phone}}" name="phone" placeholder="(00) 00000-0000)">
                         @error('phone')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -51,7 +51,7 @@
                         @enderror
                     </div>
 
-                    <button class="btn btn-success float-right">Update</button>
+                    <button class="btn btn-success float-right">Atualizar dados</button>
                 </form>
 
             </div>
