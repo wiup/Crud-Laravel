@@ -27,7 +27,8 @@ class EmployeeRequest extends FormRequest
             'name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => ['required','regex:/^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}/'],
+
         ];
     }
 
@@ -37,6 +38,7 @@ class EmployeeRequest extends FormRequest
             'required' => 'Esse campo deve ser preenchido',
             'email' => 'E-mail inválido, siga esse padrão \'exemplo@email.com\'',
             'website.regex' => 'Url inválida, digite nesse padrão \'www.meusite.com\'',
+            'phone.regex' => ' telefone inválido'
         ];
     }
 }

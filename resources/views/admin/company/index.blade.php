@@ -41,7 +41,7 @@
 
                                 @forelse($companies as $company)
                                     <tr>
-                                        <td>
+                                        <td class="text-center">
                                             @if($company->logo)
                                                 <img class="img-fluid" style="height: 50px" src="{{asset('storage/'.$company->logo)}}" alt="">
                                             @else
@@ -61,7 +61,7 @@
                                     </tr>
                                 @empty
                                    <tr>
-                                       <td class="text-center" colspan="5">Nada foi encontrado, volte para a tela anterior</td>
+                                       <td class="text-center" colspan="5">Nenhum resultado, adicione uma nova empresa</td>
                                    </tr>
                                 @endforelse
                                  </tbody>
@@ -107,6 +107,7 @@
             $(".delete").each(function(index,btn){
                 btn.addEventListener('click', function () {
                     $("#id_delete").attr("action","company/"+btn.value);
+
                 });
             });
 

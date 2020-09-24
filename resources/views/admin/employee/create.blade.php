@@ -42,7 +42,7 @@
 
                     <div class="form-group">
                         <label for="">Telefone</label>
-                        <input type="text" class="form-control @error('phone')is-invalid @endif" id="" value="{{old('phone')}}" name="phone" placeholder="(00) 00000-0000">
+                        <input type="text" class="form-control @error('phone')is-invalid @endif" id="phone" value="{{old('phone')}}" name="phone" placeholder="(00) 00000-0000">
                         @error('phone')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -55,5 +55,10 @@
             </div>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+        var selector = document.getElementById("phone");
+        Inputmask({"mask": "(99) 99999-9999"}).mask(selector);
+    </script>
 @endsection

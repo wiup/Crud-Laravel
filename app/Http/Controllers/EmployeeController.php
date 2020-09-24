@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use Illuminate\Http\Request;
+use DB;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-
+        $employees = \App\Employee::paginate(10);
+        return view('admin.employee.indexAll', compact('employees'));
     }
 
     /**
@@ -107,13 +109,23 @@ class EmployeeController extends Controller
     public function autoComplete(Request $request)
     {
 
-        $company = \App\Company::findOrFail($request->get('companyId'));
 
-        $employee = $company->employees()->where(function($q) use($request){
-               $q->where('name','like','%'. $request->get('search') .'%')
-                   ->orWhere('last_name','like','%'. $request->get('search') .'%');
+        if($request->has('companyId')){
+            $company = \App\Company::findOrFail($request->get('companyId'));
+            $employee = $company->employees()->where(function($q) use($request){
+                $q->where('name','like','%'. $request->get('search') .'%')
+                    ->orWhere('last_name','like','%'. $request->get('search') .'%');
 
-        })->get();
+            })->get();
+        }else{
+            $employee = \App\Employee::where(function($q) use($request){
+                $q->where('name','like','%'. $request->get('search') .'%')
+                    ->orWhere('last_name','like','%'. $request->get('search') .'%')
+                    ->orWhereRaw('CONCAT(`name`," ",`last_name`) = "' . $request->get('search') . '"');
+
+            })->get();
+        }
+
 
 
         return response()->json($employee);
@@ -121,24 +133,34 @@ class EmployeeController extends Controller
 
     public function search(Request $request)
     {
+        if($request->has('companyId')){
 
-        $company = \App\Company::findOrFail($request->companyId);
+            $company = \App\Company::findOrFail($request->companyId);
 
-        if($request->get('searchId')){
-            $employees = $company->employees()->where('id',$request->searchId)->paginate();
+            $employees = $company->employees()
+                ->where(function($q) use($request){
+                    $q->where('name','like','%'. $request->get('search') .'%')
+                      ->orWhere('last_name','like','%'. $request->get('search') .'%')
+                      ->orWhereRaw('CONCAT(`name`," ",`last_name`) = "' . $request->get('search') . '"');
+            })->paginate();
+
+            return view('admin.employee.index', compact('employees','company'));
 
         }else{
-            $employees = $company->employees()->where(function($q) use($request){
+
+            $employees = \App\Employee::where(function($q) use($request){
                 $q->where('name','like','%'. $request->get('search') .'%')
-                    ->orWhere('last_name','like','%'. $request->get('search') .'%');
+                ->orWhere('last_name','like','%'. $request->get('search') .'%')
+                ->orWhereRaw('CONCAT(`name`," ",`last_name`) = "' . $request->get('search') . '"');
 
             })->paginate();
 
 
+            return view('admin.employee.indexAll',compact('employees'));
         }
 
 
 
-        return view('admin.employee.index', compact('employees','company'));
+
     }
 }

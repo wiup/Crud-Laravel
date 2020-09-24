@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a href="{{route('company.index')}}" class="nav-link">Empresas</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('employee.index')}}" class="nav-link">Funcionários</a>
+                        </li>
                     </ul>
                 @endauth
 

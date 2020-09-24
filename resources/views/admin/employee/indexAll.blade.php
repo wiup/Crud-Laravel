@@ -5,17 +5,17 @@
 
         <div class="card">
             <div class="card-header" style="background-color:#fcfcfc;">
-                {{$company->name}} | Empresas
+                 Funcionários
             </div>
 
             <div class="card-body">
-
-
-                    <a href="{{route('employee.create',['id'=>$company->id])}}" class="btn btn-success">Create new employee</a>
-
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Importante!</h4>
+                    <p>Adição de novos funcionários só é permitido selecionando uma empresa em "empresas" no menu de navegação</p>
+                </div>
                 <div class="card mt-4">
                     <div class="card-header" style="background-color:#fcfcfc;">
-                        Lista de empresas
+                        Todos os funcionários
                     </div>
 
                     <div class="card-body">
@@ -23,12 +23,10 @@
                             @csrf
                             <div class="form-group form-inline position-relative">
                                     <input type="text" id="search" class="form-control mr-2" name="search" style="width:18rem;" placeholder="Procure pelo nome da empresa">
-                                    <input type="hidden" name="companyId" value="{{$company->id}}">
                                     <button class="btn btn-success ">Pesquisar</button>
                                     <div id="searchList" class="card position-absolute" style="top:100%"></div>
                             </div>
                         </form>
-                        <a class="float-right btn btn-secondary btn-sm mb-2" href="{{route('company.employees',['company' => $company->id])}}">Ver todos</a>
                         <div class="table-responsive-md">
                             <table class="table rounded table-bordered">
                                 <thead>
@@ -102,7 +100,6 @@
                             dataType: 'json',
                             data:{
                                 "search": searchInput,
-                                "companyId": "{{$company->id}}",
                                 "_token": "{{@csrf_token()}}"
                             },
                             success: function(response){

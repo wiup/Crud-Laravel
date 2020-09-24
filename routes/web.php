@@ -12,19 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Home route
 Route::get('/', function () {
     return redirect()->route('login');
 })->name('home');
-
-//Company routes
-route::resource('company','CompanyController')->middleware('auth');
-Route::post('/company/s/','CompanyController@autoComplete')->name('company.autoComplete')->middleware('auth');
-Route::post('company/search/', 'CompanyController@search')->name('company.search')->middleware('auth');
-Route::get('/company/employees/{company}','CompanyController@companyEmployees')->name('company.employees')->middleware('auth');
-
 //Employee routes
-
 Route::prefix('company')->group(function(){
 
     Route::post('/employees/s/','EmployeeController@autoComplete')->name('employee.autoComplete')->middleware('auth');
@@ -34,9 +26,18 @@ Route::prefix('company')->group(function(){
 
 });
 
+//Company routes
+route::resource('company','CompanyController')->middleware('auth');
+Route::post('/company/s/','CompanyController@autoComplete')->name('company.autoComplete')->middleware('auth');
+Route::post('company/search/', 'CompanyController@search')->name('company.search')->middleware('auth');
+Route::get('/company/employees/{company}','CompanyController@companyEmployees')->name('company.employees')->middleware('auth');
+
+
+
+
 
 Auth::routes();
-
+//remove register
 Route::get('/register',function(){
    return redirect()->route('home');
 });
