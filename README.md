@@ -1,7 +1,7 @@
-#Crud-Laravel
+# Crud-Laravel
 
 Esse projeto consiste um sistema de gerenciamento de empresas feito inteiramente com **Laravel** e **Docker**, que foi projetado apenas para fins de estudos. 
-###Objetivo do projeto
+### Objetivo do projeto
 Crud-Laravel é um simples crud de gerenciamento de empresas e funcionários, que tem como finalidade cadastrar novas empresas e seus respectivos funcionários.
 
 Funcionalidade do Crud-Laravel:
@@ -16,7 +16,7 @@ Para rodar o projeto é necessário ter instalado em seu computador o **Docker**
 
 Link do Docker: [Docker-installer](https://www.docker.com/get-started)
 
-###Como executá-lo?
+### Como executá-lo?
 
 Primeiramente faça o clone do nosso repositorio do projeto:
 ```
