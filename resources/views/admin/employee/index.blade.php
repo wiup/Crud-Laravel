@@ -11,7 +11,7 @@
             <div class="card-body">
 
 
-                    <a href="{{route('employee.create',['id'=>$company->id])}}" class="btn btn-success">Create new employee</a>
+                    <a href="{{route('employee.create',['id'=>$company->id])}}" class="btn btn-success">Criar funcionários</a>
 
                 <div class="card mt-4">
                     <div class="card-header" style="background-color:#fcfcfc;">
