@@ -1,61 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+#Crud-Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Esse projeto consiste um sistema de gerenciamento de empresas feito inteiramente com **Laravel** e **Docker**, que foi projetado apenas para fins de estudos. 
+###Objetivo do projeto
+Crud-Laravel é um simples crud de gerenciamento de empresas e funcionários, que tem como finalidade cadastrar novas empresas e seus respectivos funcionários.
 
-## About Laravel
+Funcionalidade do Crud-Laravel:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Adição de novos funcionários e empresas
+* Consulta (ambos)
+* Edição (ambos)
+* Remoção (ambos)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+###Pré-Requisitos
+Para rodar o projeto é necessário ter instalado em seu computador o **Docker**:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Link do Docker: [Docker-installer](https://www.docker.com/get-started)
 
-## Learning Laravel
+###Como executá-lo?
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Primeiramente faça o clone do nosso repositorio do projeto:
+```
+  git clone https://github.com/guilhermeconstantinov/Crud-Laravel.git
+```
+Agora basta acessar usando um terminal a pasta do laradock que fica localizado dentro do Crud-Laravel:
+```
+    cd Crud-Laravel/laradock
+```
+Após entrar no laradock basta executar o seguinte comando para iniciar o projeto:
+```
+    docker-compose up -d nginx mysql
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Pronto agora o projeto já está funcionando e tudo que você precisa fazer é acessar no seu navegador o **localhost:80**. No entanto, ainda precisamos de mais algumas configurações para poder logar no **Crud**, já que ainda não possuímos o banco de dados com o usuários admin@admin.com.
 
-## Laravel Sponsors
+O primeiro passo para gerar o banco é acessando o terminal interno do nosso laradock, para fazer isso basta executar o seguinte comando:
+```
+    Docker exec -it crud_workspace_1 sh
+```
+Agora basta executar os seguintes comandos para criar o banco de dados:
+```
+    php artisan migrate
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Para criar o primeiro usuário digite:
+```
+    php artisan db:seed
+```
 
-### Premium Partners
+Agora tudo está funcionando corretamente!
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Login e senha para acessar o sistema:
+* Usuário: admin@admin.com
+* Senha: password
