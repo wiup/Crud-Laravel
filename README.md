@@ -20,7 +20,7 @@ Link do Docker: [Docker-installer](https://www.docker.com/get-started)
 
 Primeiramente faça o clone do nosso repositorio do projeto:
 ```
-  git clone https://github.com/wiup/Crud-Laravel.git
+  git clone https://github.com/guilhermeconstantinov/Crud-Laravel.git
 ```
 Agora basta acessar usando um terminal a pasta do laradock que fica localizado dentro do Crud-Laravel:
 ```
